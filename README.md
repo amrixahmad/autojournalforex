@@ -1,0 +1,5 @@
+"# forexautojournal" 
+"# forexautojournal" 
+"# traderautojournal" 
+"# autojournalforex" 
+"# autojournalforex" 

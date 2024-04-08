@@ -1,0 +1,61 @@
+{
+    "email": "rinn@amri.com",
+    "password": "cR90772ViqZ"
+},
+{
+    "email": "amri@amri.com",
+    "password": "OoCG76z5887"
+},
+{
+    "email": "john@amri.com",
+    "password": "mR85p7zQuQL"
+},
+{
+    "email": "jane@amri.com",
+    "password": "k4N7y2BxXki"
+},
+{
+    "email": "x@amri.com",
+    "password": "mR85p7zQuQL"
+}
+
+{
+    "url": "instagram.com/rinn",
+    "name": "Rinn's instagram"
+}
+{
+    "url": "youtube.com/rinn",
+    "name": "Rinn's Youtube"
+}
+{
+    "url": "twitter.com/rinn",
+    "name": "Rinn's twitter"
+}
+{
+    "first_name": "Bruce",
+    "last_name": "Banner",
+    "email": "hulk@avengers.com",
+    "company": "Avengers",
+    "note": "hulk smash"
+}
+{
+    "first_name": "James",
+    "last_name": "Bond",
+    "email": "007@mi6.com",
+    "company": "MI6",
+    "note": "License to kill"
+}
+{
+    "first_name": "Clark",
+    "last_name": "Kent",
+    "email": "clark@superman.com",
+    "company": "Krypton",
+    "note": "Earth is my home"
+}
+{
+    "first_name": "Nick",
+    "last_name": "Fury",
+    "email": "fury@avengers.com",
+    "company": "Avengers",
+    "note": "mothafucka"
+}
