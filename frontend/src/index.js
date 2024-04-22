@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {Landing,Contact,Login,Register,Links,Profile,AutoJournals} from './components/component-service'
+import {Landing,Contact,Login,Register,Links,Profile,AutoJournals,ForexChat} from './components/component-service'
 import {
   BrowserRouter,
   Routes,
@@ -21,6 +21,7 @@ root.render(
           <Route path="register" element={<Register />}></Route>  
           <Route path="login" element={<Login />}></Route>  
           <Route path="links" element={<Links />}></Route>  
+          <Route path="forexchat" element={<ForexChat />}></Route>  
           <Route path="profile" element={<Profile />}></Route>  
           <Route path="autojournal" element={<AutoJournals />}></Route>  
         </Route>          

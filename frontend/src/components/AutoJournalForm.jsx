@@ -57,10 +57,15 @@ const AutoJournalForm = ({token,getAutoJournals,AutoJournalId,setAutoJournalId})
           <div className="col-lg-8 mt-5 mt-lg-0">
 
             <form method="post" className="php-email-form" encType='multipart/form-data'>
-                         
-              <div className="col-md-6 form-group mt-3">
-                <label>Choose your AutoJournal image</label>
+               
+
+              <div className="form-group mt-3">
+                  <label>Choose your AutoJournal image</label>
+              </div>
+              <div className="form-group mt-3">
+                
                 <input 
+                  className="form-control"
                   type="file"
                   name="AutoJournal-img"
                   onChange={(e)=>{setAutoJournalImage(e.target.files[0])}}

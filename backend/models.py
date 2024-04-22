@@ -15,23 +15,24 @@ class User(Base):
     date_created = Column(DateTime,default=datetime.utcnow())
     date_updated = Column(DateTime,default=datetime.utcnow())
 
-    forexcoaches = relationship("ForexCoach",back_populates="owner")
+    forexchats = relationship("ForexChat",back_populates="owner")
     autojournals = relationship("AutoJournal",back_populates="owner")
 
     def verify_password(self,password: str):
         return _hash.bcrypt.verify(password,self.hashed_password)
 
 
-class ForexCoach(Base):
-    __tablename__ = "forexcoaches"
+class ForexChat(Base):
+    __tablename__ = "forexchats"
     id = Column(Integer,primary_key=True,index=True)
     owner_id = Column(Integer,ForeignKey("users.id"))
+    trade_image_url = Column(String,nullable=True)
     prompt = Column(String(240),nullable=False)
     response = Column(String(240),nullable=True)
     date_created = Column(DateTime,default=datetime.utcnow())
     date_updated = Column(DateTime,default=datetime.utcnow())
 
-    owner = relationship("User",back_populates="forexcoaches")
+    owner = relationship("User",back_populates="forexchats")
 
 class AutoJournal(Base):
     __tablename__ = "autojournals"

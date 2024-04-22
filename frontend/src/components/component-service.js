@@ -14,6 +14,8 @@ import LinkForm from "./LinkForm";
 import Profile from "./Profile";
 import AutoJournals from "./AutoJournals";
 import AutoJournalForm from "./AutoJournalForm";
+import ForexChat from "./ForexChat";
 
 export {Header,Hero,About,CTA,Footer,Contact,Services,FAQ,Landing,
-        Login,Register,Links,LinkForm,Profile,AutoJournalForm,AutoJournals}
+        Login,Register,Links,LinkForm,Profile,AutoJournalForm,AutoJournals,
+        ForexChat}

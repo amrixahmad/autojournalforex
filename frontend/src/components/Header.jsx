@@ -18,6 +18,7 @@ const Header = () => {
             <ul>  
               <li><Link className='nav-link scrollto' to="/profile">Profile</Link></li> 
               <li><Link className='nav-link scrollto' to="/links">Links</Link></li>       
+              <li><Link className='nav-link scrollto' to="/forexchat">Forex Chat</Link></li>       
               <li><Link className='nav-link scrollto' to="/autojournal">Journal</Link></li>       
               <li><Link className='nav-link scrollto' to="/contact">Contact</Link></li>            
               <li>{ token ? <Logout /> : <Link className='nav-link scrollto' to="/login">Login</Link> }</li>             

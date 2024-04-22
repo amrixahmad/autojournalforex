@@ -18,13 +18,13 @@ class AutoJournal(AutoJournalBase):
     class Config:
         orm_mode = True
 
-class ForexCoachBase(BaseModel):
+class ForexChatBase(BaseModel):
     prompt: str    
 
-class ForexCoachCreate(ForexCoachBase):
+class ForexChatCreate(ForexChatBase):
     pass
 
-class ForexCoach(ForexCoachBase):
+class ForexChat(ForexChatBase):
     id: int
     owner_id: int
     response: str = None
