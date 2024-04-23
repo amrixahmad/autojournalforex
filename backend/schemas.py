@@ -19,7 +19,8 @@ class AutoJournal(AutoJournalBase):
         orm_mode = True
 
 class ForexChatBase(BaseModel):
-    prompt: str    
+    # prompt: str = ""
+    pass
 
 class ForexChatCreate(ForexChatBase):
     pass
@@ -27,7 +28,7 @@ class ForexChatCreate(ForexChatBase):
 class ForexChat(ForexChatBase):
     id: int
     owner_id: int
-    response: str = None
+    response: str = ""
     date_created: datetime
     date_updated: datetime
 

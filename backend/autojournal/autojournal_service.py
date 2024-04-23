@@ -8,12 +8,9 @@ from pydantic import ValidationError
 import config.token as _token
 from chatgpt_app.chatgpt_services import OpenAIResponse
 
-BUCKET_NAME = "autojournalforex"
-BUCKET_REGION = "ap-southeast-1"
-
 class AutoJournalService:
     # Setting up S3 client
-    s3_client = boto3.client('s3', region_name=BUCKET_REGION,
+    s3_client = boto3.client('s3', region_name=_token.BUCKET_REGION,
                          aws_access_key_id=_token.AWS_ACCESS_KEY,
                          aws_secret_access_key=_token.AWS_SECRET_KEY)
 
@@ -31,8 +28,8 @@ class AutoJournalService:
         file_content = await image.read()
 
         try: 
-            AutoJournalService.s3_client.put_object(Bucket=BUCKET_NAME, Key=image.filename, Body=file_content)
-            obj_url = f"https://{BUCKET_NAME}.s3.{BUCKET_REGION}.amazonaws.com/{image.filename}"            
+            AutoJournalService.s3_client.put_object(Bucket=_token.BUCKET_NAME, Key=image.filename, Body=file_content)
+            obj_url = f"https://{_token.BUCKET_NAME}.s3.{_token.BUCKET_REGION}.amazonaws.com/{image.filename}"            
             # print(obj_url)
         except ClientError as e:
             print("Unexpected error: ",e)

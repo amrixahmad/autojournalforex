@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, {useContext,useState,useEffect} from 'react'
+import { UserContext } from '../auth/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 const ForexChat = () => {
+  const [token] = useContext(UserContext)
   const [messages, setMessages] = useState([]);
   const [forexChatText, setForexChatText] = useState('');
   const [forexChatImage,setforexChatImage] = useState(null)
@@ -9,11 +12,10 @@ const ForexChat = () => {
   const [successMessage,setSuccessMessage] = useState("")
   const [showError,setShowError] = useState(false)
   const [showSuccess,setShowSuccess] = useState(false)
+  const navigate = useNavigate()
 
   const onInputChange = (e) => {
     setIsSelected(true)
-    // setAutoJournalImage(e.target.files[0])
-    // console.log("file select",AutoJournalImage,isSelected)
   }
 
   const handleSend = () => {
@@ -31,7 +33,7 @@ const ForexChat = () => {
     e.preventDefault()
     const formData = new FormData()
 
-    formData.append("file",AutoJournalImage)   
+    formData.append("file",forexChatImage)   
     
     const request = {
       method: "POST",
@@ -45,6 +47,13 @@ const ForexChat = () => {
       console.log("Form submit success")
     }
   }
+
+  useEffect(()=>{
+    if (!token) {
+      navigate("/login")
+    }
+
+  },[token])
 
   return (
     // Contact Section

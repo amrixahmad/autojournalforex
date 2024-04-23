@@ -1,4 +1,5 @@
-from fastapi import APIRouter,HTTPException,Depends
+from fastapi import (APIRouter,HTTPException,Depends,File,
+                     UploadFile,Form)
 from sqlalchemy.orm import Session
 from typing import List
 import schemas
@@ -8,13 +9,14 @@ from forexchat.forex_chat_service import ForexChatService
 
 router = APIRouter(prefix="/api/forex_chat",tags=["Forex Coach"])
 
-@router.post("",response_model=schemas.ForexChatCreate)
+@router.post("")
 async def create_forex_chat(
-    forex_chat: schemas.ForexChatCreate,
+    # forex_chat: schemas.ForexChatCreate = Form(None),
+    image: UploadFile = File(...),    
     user: schemas.User = Depends(_token.get_current_user),
     db: Session = Depends(_db.get_db)
     ):
-    return await ForexChatService.create_forex_chat(forex_chat,user,db)
+    return await ForexChatService.create_forex_chat(image,user,db)
 
 @router.get("/all",response_model=List[schemas.ForexChat])
 async def get_forex_chats(

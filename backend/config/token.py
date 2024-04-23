@@ -13,6 +13,8 @@ APP_SECRET_KEY = os.getenv("APP_SECRET_KEY")
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+BUCKET_NAME = os.getenv("BUCKET_NAME")
+BUCKET_REGION = os.getenv("BUCKET_REGION")
 
 async def create_token(user: models.User):
     user_obj = schemas.User.from_orm(user)

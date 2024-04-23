@@ -1,19 +1,43 @@
 import schemas,models
 from sqlalchemy.orm import Session
-from fastapi import HTTPException
+from fastapi import HTTPException,UploadFile,Form
+import boto3
+from botocore.exceptions import ClientError
 from datetime import datetime
+import config.token as _token
 from chatgpt_app.chatgpt_services import OpenAIResponse
 
 class ForexChatService:
-    async def create_forex_chat(forex_chat: schemas.ForexChatCreate,user: schemas.User,db: Session):
-        forex_chat = models.ForexChat(                                        
-                                        prompt=forex_chat.prompt,
-                                        response=OpenAIResponse().chatgpt(message=forex_chat.prompt),
+    
+    # Setting up S3 client
+    s3_client = boto3.client('s3', region_name=_token.BUCKET_REGION,
+                        aws_access_key_id=_token.AWS_ACCESS_KEY,
+                        aws_secret_access_key=_token.AWS_SECRET_KEY)
+
+    async def create_forex_chat(
+                                # forex_chat: schemas.ForexChatCreate,
+                                image: UploadFile,                                
+                                user: schemas.User,
+                                db: Session):
+        
+        file_content = await image.read()
+
+        try: 
+            ForexChatService.s3_client.put_object(Bucket=_token.BUCKET_NAME, Key=image.filename, Body=file_content)
+            obj_url = f"https://{_token.BUCKET_NAME}.s3.{_token.BUCKET_REGION}.amazonaws.com/{image.filename}"            
+            # print(obj_url)
+        except ClientError as e:
+            print("Unexpected error: ",e)
+
+        db_chat = models.ForexChat(  
+                                        image_url=obj_url,                                      
+                                        # prompt=forex_chat.prompt,
+                                        response=OpenAIResponse().visiongpt(trade_ss=obj_url),
                                         owner_id=user.id)
-        db.add(forex_chat)
+        db.add(db_chat)
         db.commit()
-        db.refresh(forex_chat)
-        return schemas.ForexChat.from_orm(forex_chat)
+        db.refresh(db_chat)
+        return schemas.ForexChat.from_orm(db_chat)
 
     async def _forex_chat_selector(forex_chat_id: int,user: schemas.User,db: Session):
         try:  
